@@ -1,12 +1,12 @@
 const App   = require( '../app' ),
-      Hosts = require( '../hosts' );
+      Hosts = process.env.HOSTS.split( ',' );
 
 App.use( ( req, res, next ) => {
 
-    let origin = req.headers.origin;
+    const Origin = req.get( 'origin' );
 
-    if ( Hosts.indexOf( origin ) > -1 ) {
-        res.header( 'Access-Control-Allow-Origin', origin );
+    if ( Hosts.indexOf( Origin ) > -1 ) {
+        res.header( 'Access-Control-Allow-Origin', Origin );
     }
 
     res.header( 'Access-Control-Allow-Credentials', 'true' );

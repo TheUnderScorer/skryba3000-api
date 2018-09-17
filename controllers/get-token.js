@@ -1,5 +1,3 @@
-const Settings = require( '../settings' );
-
 const Crypto = require( 'crypto' );
 
 const SuccessResponse = require( '../responses/result' ),
@@ -7,12 +5,12 @@ const SuccessResponse = require( '../responses/result' ),
 
 module.exports = async ( req, res ) => {
 
-    const Host = req.protocol + '://' + req.get( 'host' );
+    const Origin = req.get( 'origin' );
 
     //Request from unknown host
-    if ( !require( '../hosts' ).find( item => item === Host ) ) {
+    if ( process.env.HOSTS.split( ',' ).indexOf( Origin ) === -1 ) {
 
-        ErrorResponse.message = 'Unknown host';
+        ErrorResponse.message = 'Invalid host';
 
         return res.status( 400 ).json( ErrorResponse );
 
