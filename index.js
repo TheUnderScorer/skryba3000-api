@@ -5,6 +5,9 @@ if ( process.env.NODE_ENV !== 'production' ) {
 //Load express app
 require( './app' );
 
+//Load connection with database
+require('./db/connection');
+
 //Static path for Express
 require( './middleware/static' );
 
