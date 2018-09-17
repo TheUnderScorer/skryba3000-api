@@ -1,6 +1,6 @@
 const App  = require( './app' ),
       Http = require( 'http' ).Server( App ),
-      Port = process.env.port || 5000;
+      Port = process.env.PORT || 5000;
 
 Http.listen( Port, () => console.log( 'Server started on port ', Port ) );
 
